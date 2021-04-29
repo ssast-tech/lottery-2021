@@ -1,29 +1,20 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        student-fes-gotcha-2021
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+  <div>
+    <div class="grid-centered grid-mainpage">
+      <sky-cloud class="col-span-3 row-span-1 w-full self-start" />
+      <aside class="col-span-1 row-span-2 h-full justify-self-start z-10 relative">
+        <tree-left class="tree-left h-full" />
+      </aside>
+      <aside class="col-start-3 col-span-1 row-span-2 h-full justify-self-end z-10 relative">
+        <tree-right class="tree-right h-full" />
+      </aside>
+      <aside class="row-start-3 row-span-1 col-start-2 col-span-1 z-20">
+        <grass />
+      </aside>
     </div>
+    <main class="fixed top-0 left-0 w-screen h-screen z-0">
+      <train />
+    </main>
   </div>
 </template>
 
@@ -33,48 +24,15 @@ import Vue from 'vue'
 export default Vue.extend({})
 </script>
 
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+<style lang="postcss">
+.grid-mainpage {
+  display: grid;
+  grid-template-rows: 20vh 60vh 20vh;
+  grid-template-columns: 15vw 70vw 15vw;
+  @apply w-screen h-screen;
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.grid-centered {
+  @apply grid justify-items-center items-center;
 }
 </style>
