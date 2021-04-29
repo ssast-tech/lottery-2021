@@ -22,10 +22,11 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
+import confetti from 'canvas-confetti'
 
-function randBetween (a: number, b: number) {
+function randBetween (a, b) {
   return Math.random() * (b - a) + a
 }
 
@@ -63,6 +64,7 @@ export default Vue.extend({
         this.trainState = 100
         this.shuffleCabins()
       }.bind(this), 0)
+      setTimeout(confetti, 3000)
     },
     shuffleCabins () {
       const trainLength = 120

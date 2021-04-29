@@ -57,7 +57,7 @@ export default Vue.extend({
       return [String(Math.floor(this.row / 10)), String(this.row % 10)]
     },
     colLetter () {
-      return 'ABCDE'[this.col]
+      return (['A', 'B', 'C', 'D', 'E'])[this.col as number]
     }
   }
 })
