@@ -58,7 +58,7 @@ export default Vue.extend({
   },
   computed: {
     digitsOfRow () {
-      return this.showSeat ? [String(Math.floor((this.row + 1) / 10)), String((this.row + 1) % 10)] : ['#', '#']
+      return [String(Math.floor((this.row + 1) / 10)), String((this.row + 1) % 10)]
     },
     colLetter () {
       return this.showSeat ? (['A', 'B', 'C', 'D', 'E'])[this.col as number] : '#'
