@@ -1,38 +1,28 @@
 <template>
-  <div>
-    <div class="grid-centered grid-mainpage">
-      <sky-cloud class="col-span-3 row-span-1 w-full self-start" />
-      <aside class="col-span-1 row-span-2 h-full justify-self-start z-10 relative">
-        <tree-left class="tree-left h-full" />
-      </aside>
-      <aside class="col-start-3 col-span-1 row-span-2 h-full justify-self-end z-10 relative">
-        <tree-right class="tree-right h-full" />
-      </aside>
-      <aside class="row-start-3 row-span-1 col-start-2 col-span-1 z-20">
-        <grass />
-      </aside>
+  <main class="flex flex-col items-center justify-center h-screen">
+    <h1 class="mt-16 mb-16 font-sans text-4xl">
+      2021软院学生节抽奖
+    </h1>
+    <div class="grid grid-cols-2 grid-rows-1">
+      <nuxt-link class="focus:outline-none grid ring-4 ring-indigo-200 bg-indigo-700 hover:bg-indigo-600 text-white text-lg py-2 px-6 m-2 rounded-md" to="/normal/5000/75">
+        <basket decorative class="mr-1" /><span class="col-start-2">普通抽奖</span>
+      </nuxt-link>
+      <nuxt-link class="focus:outline-none grid ring-4 ring-indigo-200 bg-indigo-700 hover:bg-indigo-600 text-white text-lg py-2 px-6 m-2 rounded-md" to="/final/10000/100">
+        <shopping decorative class="mr-1" /><span class="col-start-2">大奖抽奖</span>
+      </nuxt-link>
     </div>
-    <main class="fixed top-0 left-0 w-screen h-screen z-0">
-      <train />
-    </main>
-  </div>
+  </main>
 </template>
 
-<script lang="ts">
+<script>
+import Basket from 'vue-material-design-icons/Basket.vue'
+import Shopping from 'vue-material-design-icons/Shopping.vue'
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  components: {
+    Basket,
+    Shopping
+  }
+})
 </script>
-
-<style lang="postcss">
-.grid-mainpage {
-  display: grid;
-  grid-template-rows: 20vh 60vh 20vh;
-  grid-template-columns: 15vw 70vw 15vw;
-  @apply w-screen h-screen;
-}
-
-.grid-centered {
-  @apply grid justify-items-center items-center;
-}
-</style>

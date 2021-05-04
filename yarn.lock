@@ -9568,6 +9568,11 @@ vue-loader@^15.9.6:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-material-design-icons@^4.11.0:
+  version "4.11.0"
+  resolved "https://registry.npm.taobao.org/vue-material-design-icons/download/vue-material-design-icons-4.11.0.tgz#11356194846a5806d958ede531291605cc314b33"
+  integrity sha1-ETVhlIRqWAbZWO3lMSkWBcwxSzM=
+
 vue-meta@^2.4.0:
   version "2.4.0"
   resolved "https://r.cnpmjs.org/vue-meta/download/vue-meta-2.4.0.tgz#a419fb4b4135ce965dab32ec641d1989c2ee4845"

@@ -15,7 +15,7 @@
         class="flex flex-col-reverse cursor-pointer"
         @click="startTrain"
       >
-        <cabin v-bind="x" />
+        <cabin v-bind="x" :show-seat="showSeat" />
       </div>
     </ul>
     <div class="h-1/4 rail-container" />
@@ -30,10 +30,27 @@ function randBetween (a, b) {
   return Math.random() * (b - a) + a
 }
 
+const TRAIN_START_STATE = 10
+const TRAIN_LENGTH = 120
+
 export default Vue.extend({
+  props: {
+    time: {
+      type: Number,
+      default: 3000
+    },
+    deltaCabinNum: {
+      type: Number,
+      default: 90
+    },
+    showSeat: {
+      type: Boolean,
+      default: true
+    }
+  },
   data () {
     return {
-      trainState: 100,
+      trainState: TRAIN_START_STATE + this.deltaCabinNum,
       cabins: [],
       transitionDisabled: false
     }
@@ -43,7 +60,7 @@ export default Vue.extend({
       return `calc(-50vw * ${this.trainState})`
     },
     cssStyleTransition () {
-      return this.transitionDisabled ? 'none' : 'left 3000ms ease-in-out'
+      return this.transitionDisabled ? 'none' : `left ${this.time}ms ease-in-out`
     }
   },
   beforeMount () {
@@ -51,31 +68,38 @@ export default Vue.extend({
   },
   methods: {
     startTrain () {
-      for (let i = 0; i < 20; i++) {
-        const temp = this.cabins[i + 90]
-        this.cabins[i + 90] = this.cabins[i]
-        this.cabins[i] = temp
+      for (let i = -2; i <= 2; i++) {
+        const temp = this.cabins[TRAIN_START_STATE + this.deltaCabinNum + i]
+        this.cabins[TRAIN_START_STATE + this.deltaCabinNum + i] = this.cabins[TRAIN_START_STATE + i]
+        this.cabins[TRAIN_START_STATE + i] = temp
       }
 
       this.transitionDisabled = true
-      this.trainState = 10
+      this.trainState = TRAIN_START_STATE
+      this.shuffleCabins()
+
       setTimeout(function () {
         this.transitionDisabled = false
-        this.trainState = 100
-        this.shuffleCabins()
+        this.trainState = TRAIN_START_STATE + this.deltaCabinNum
       }.bind(this), 0)
-      setTimeout(confetti, 3000)
+      setTimeout(confetti, this.time)
     },
     shuffleCabins () {
-      const trainLength = 120
-      this.cabins = []
-      for (let i = 0; i < trainLength; i++) {
-        this.cabins.push({
+      const cabins = []
+      for (let i = 0; i < TRAIN_LENGTH; i++) {
+        cabins.push({
           lang: Math.floor(randBetween(0, 11)),
           row: Math.floor(randBetween(0, 19)),
           col: Math.floor(randBetween(0, 4)),
           id: Math.round(Math.random() * 1e8)
         })
+      }
+      if (this.cabins.length === 0) {
+        this.cabins.splice(0, 0, ...cabins)
+      } else {
+        for (let i = TRAIN_START_STATE + 2; i < TRAIN_LENGTH; i++) {
+          this.cabins[i] = cabins[i]
+        }
       }
     }
   }

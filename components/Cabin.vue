@@ -25,8 +25,8 @@ function generateIntegerValidator (a: number, b: number) {
 }
 
 const languageToStringMapping = [
-  'C++', 'Java', 'Kotlin', 'Python', 'Scala', 'Rust',
-  'BASH', 'CSS', 'HTML', 'C#', 'Lua', 'PHP'
+  'Basic', 'C/C++', 'Go', 'Java', 'JS', 'Lua',
+  'Pascal', 'PHP', 'Python', 'R', 'Rust', 'SQL'
 ]
 
 export default Vue.extend({
@@ -45,6 +45,10 @@ export default Vue.extend({
       type: Number,
       default: 0,
       validator: generateIntegerValidator(0, 5)
+    },
+    showSeat: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -54,10 +58,10 @@ export default Vue.extend({
   },
   computed: {
     digitsOfRow () {
-      return [String(Math.floor(this.row / 10)), String(this.row % 10)]
+      return this.showSeat ? [String(Math.floor((this.row + 1) / 10)), String((this.row + 1) % 10)] : ['#', '#']
     },
     colLetter () {
-      return (['A', 'B', 'C', 'D', 'E'])[this.col as number]
+      return this.showSeat ? (['A', 'B', 'C', 'D', 'E'])[this.col as number] : '#'
     }
   }
 })
@@ -77,7 +81,7 @@ export default Vue.extend({
 .lang-tag {
   position: absolute;
   top: 35%;
-  left: 20%;
+  left: 19%;
   width: 26%;
   display: grid;
   justify-items: center;
