@@ -88,9 +88,9 @@ export default Vue.extend({
       const cabins = []
       for (let i = 0; i < TRAIN_LENGTH; i++) {
         cabins.push({
-          lang: Math.floor(randBetween(0, 12-(1e-9))),
-          row: Math.floor(randBetween(0, 20-(1e-9))),
-          col: Math.floor(randBetween(0, 4-(1e-9))),
+          lang: Math.floor(randBetween(0, 12 - (1e-9))),
+          row: Math.floor(randBetween(0, 20 - (1e-9))),
+          col: Math.floor(randBetween(0, 4 - (1e-9))),
           id: Math.round(Math.random() * 1e8)
         })
       }
